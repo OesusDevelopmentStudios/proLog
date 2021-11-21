@@ -8,51 +8,58 @@ import com.oesus.testable.proLog.enums.LogLevel;
 import com.oesus.testable.proLog.enums.ConsoleColors;
 
 import com.oesus.testable.proLog.Logger.Log;
-//import com.oesus.testable.proLog.Logger.LoggerService;
+import com.oesus.testable.proLog.Logger.LoggerServices;
 
 
 public class ProLog
 {
+    private static LogLevel globalLogLevel_;
+    private static LoggerServices loggerServices_;
+    private static DateTimeFormatter dateFormatter_ = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+    private static DateTimeFormatter timeFormatter_ = DateTimeFormatter.ofPattern("HH:mm:ss:SSSS");
+
     private String className_;
     private LogLevel logLevel_;
-    // private LoggerServices loggerServices_;
-    private DateTimeFormatter dateTimeFormatter_;
 
 
-    public ProLog(String className/*, LoggerServices loggerServices*/)
+    public ProLog(String className)
     {
-        this(className/*, loggerServices*/, LogLevel.TOBOTH);
+        this(className, (globalLogLevel_ == null) ? LogLevel.ONLYTOCMD : globalLogLevel_);
     }
 
-    public ProLog(String className/*, LoggerServices loggerServices*/, LogLevel logLevel)
+    public ProLog(String className, LogLevel logLevel)
     {
         className_ = className;
-        //loggerServices_ = loggerServices;
         logLevel_ = logLevel;
-        dateTimeFormatter_ = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss:SSS");  
     }
 
 
     public void info(String message)
     {   
-        Log log =  new Log("[INFO]", getCurrentTime(), className_, getCallerName(), message);
+        Log log =  new Log("[INFO]", getCurrentDate(), getCurrentTime(), className_, getCallerName(), message);
         System.out.print(log.toString());
     }
 
     public void warning(String message)
     {
-        Log log =  new Log("[WARN]", getCurrentTime(), className_, getCallerName(), message, ConsoleColors.YELLOW);
+        Log log =  new Log("[WARN]", getCurrentDate(), getCurrentTime(), className_, getCallerName(), message, ConsoleColors.YELLOW);
         System.out.print(log.toString());
     }
 
     public void error(String message)
     {
-        Log log =  new Log("[ERROR]", getCurrentTime(), className_, getCallerName(), message, ConsoleColors.RED);
+        Log log =  new Log("[ERROR]", getCurrentDate(), getCurrentTime(), className_, getCallerName(), message, ConsoleColors.RED);
         System.out.print(log.toString());
     }
 
-    public void trace(String message, String stackTrace)
-    {}
+
+    // TODO: return false if LoggerService is already runnig or it couldn't be started for some reason
+    public boolean build(LogLevel globalLogLevel, String logPath)
+    {
+        globalLogLevel_ = globalLogLevel;
+
+        return true;
+    }
 
 
     private String getCallerName()
@@ -71,10 +78,17 @@ public class ProLog
         }
     }
 
+    private String getCurrentDate()
+    {
+        LocalDateTime now = LocalDateTime.now();
+
+        return dateFormatter_.format(now);
+    }
+
     private String getCurrentTime()
     {
         LocalDateTime now = LocalDateTime.now();
 
-        return dateTimeFormatter_.format(now);
+        return timeFormatter_.format(now);
     }
 }

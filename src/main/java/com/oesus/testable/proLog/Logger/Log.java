@@ -5,6 +5,7 @@ import com.oesus.testable.proLog.enums.ConsoleColors;
 public class Log
 {
     private String level_;
+    private String dateStamp_;
     private String timeStamp_;
     private String className_;
     private String caller_;
@@ -12,14 +13,15 @@ public class Log
     private ConsoleColors color_;
 
 
-    public Log(String level, String timeStamp, String className, String caller, String message)
+    public Log(String level, String dateStamp, String timeStamp, String className, String caller, String message)
     {
-        this(level, timeStamp, className, caller, message, ConsoleColors.RESET);
+        this(level, dateStamp, timeStamp, className, caller, message, ConsoleColors.RESET);
     }
 
-    public Log(String level, String timeStamp, String className, String caller, String message, ConsoleColors color)
+    public Log(String level, String dateStamp, String timeStamp, String className, String caller, String message, ConsoleColors color)
     {
         level_ = level;
+        dateStamp_ = dateStamp;
         timeStamp_ = timeStamp;
         className_ = className;
         caller_ = caller;
@@ -30,7 +32,7 @@ public class Log
     public String toString()
     {
         return color_.color_ + 
-            level_ + " " + timeStamp_ + " > " + className_ + ": " + caller_ + "(): " + message_ + "\n" +
+            level_ + " " + dateStamp_ + " at " + timeStamp_ + " > " + className_ + ": " + caller_ + "(): " + message_ + "\n" +
             ConsoleColors.RESET.color_;
     }
 }

@@ -4,8 +4,6 @@ import java.util.Stack;
 
 import com.oesus.testable.proLog.ProLog;
 
-import com.oesus.testable.proLog.enums.LogLevel;
-
 public class LoggerServices extends Thread
 {
     private boolean online_ = true;
