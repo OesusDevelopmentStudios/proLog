@@ -1,2 +1,2 @@
 # proLog
-Logger utility for Java programming language
+Logger utility for C++ programming language
