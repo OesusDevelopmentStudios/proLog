@@ -13,7 +13,7 @@ public:
 
 private: 
     void info_logger();
-    void debbug_logger();
+    void debug_logger();
     void error_logger();
     void warning_logger();
 };

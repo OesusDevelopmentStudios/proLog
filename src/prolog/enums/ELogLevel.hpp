@@ -7,7 +7,7 @@ namespace prolog::enums
 
 enum class ELogLevel
 {
-    ELogLevel_Debbug,
+    ELogLevel_Debug,
     ELogLevel_Info,
     ELogLevel_Warning,
     ELogLevel_Error

@@ -1,3 +1,7 @@
 # BUILD
 build
 build/
+
+# ENV
+.vscode
+.vscode/

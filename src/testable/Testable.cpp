@@ -19,28 +19,33 @@ Testable::~Testable()
 void Testable::start_test()
 {
     info_logger();
-    debbug_logger();
+    debug_logger();
     error_logger();
     warning_logger();
 }
 
 void Testable::info_logger()
 {
+    logger.info(__func__, "you are now informed");
+    logger.info("info but without func name");
 }
 
-void Testable::debbug_logger()
+void Testable::debug_logger()
 {
+    logger.debug(__func__, "urocze robaczki");
+    logger.debug("creepy crawlies");
 }
 
 void Testable::error_logger()
 {
-    logger.error(__func__, "message");// logger << __func__ << "testing3";
-    logger.error("critical failure!");
+    logger.error(__func__, "message");
+    logger.error("some critical failure message!");
 }
 
 void Testable::warning_logger()
 {
-    //logger << __func__ << "testing4";
+    logger.warning(__func__, "twoja stara");
+    logger.warning("sra do gara");
 }
 
 }  // namespace prolog::testable
