@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cstdarg>
 #include <iostream>
 #include <string>
 
@@ -18,18 +19,21 @@ public:
     Prolog(Prolog& prolog);
     ~Prolog();
 
-    void debug(const std::string& msg);
-    void debug(const std::string& functionName, const std::string& name);
-    void error(const std::string& msg);
-    void error(const std::string& functionName, const std::string& name);
-    void info(const std::string& msg);
-    void info(const std::string& functionName, const std::string& name);
-    void warning(const std::string& msg);
-    void warning(const std::string& functionName, const std::string& name);
+    //template <class T>
+    void debug(const std::string& msg/*, T* ... args*/) const { debug("", msg); }
+    void error(const std::string& msg) const { error("", msg); }
+    void info(const std::string& msg) const { info("", msg); }
+    void warning(const std::string& msg) const { warning("", msg); }
+
+    void debug(const std::string& functionName, const std::string& name) const;
+    void error(const std::string& functionName, const std::string& name) const;
+    void info(const std::string& functionName, const std::string& name) const;
+    void warning(const std::string& functionName, const std::string& name) const;
+
 private:
-    const std::string getCurrentTime();
-    std::string makeMsg(enums::ELogLevel level, const std::string& msg, const std::string funcName="");
-    void write(const std::string& msg);
+    const std::string getCurrentTime() const;
+    std::string makeMsg(enums::ELogLevel level, const std::string& msg, const std::string funcName="") const;
+    void write(const std::string& msg) const;
 
 
     const std::string loggerName;

@@ -1,6 +1,7 @@
 #include "prolog/Prolog.hpp"
 
 #include <chrono>
+#include <sstream>
 #include <thread>
 
 #include "enums/ELogLevel.hpp"
@@ -11,7 +12,7 @@ namespace prolog
 namespace
 {
 
-std::string logLevelToString(enums::ELogLevel level)
+const std::string logLevelToString(enums::ELogLevel level)
 {
     switch (level)
     {
@@ -37,55 +38,31 @@ Prolog::Prolog(const std::string& name)
 Prolog::~Prolog()
 {}
 
-void Prolog::debug(const std::string& msg)
-{
-    const auto log = makeMsg(enums::ELogLevel::ELogLevel_Debug, msg);
-    write(log);
-}
-
-void Prolog::debug(const std::string& funcName, const std::string& msg)
+void Prolog::debug(const std::string& funcName, const std::string& msg) const
 {
     const auto log = makeMsg(enums::ELogLevel::ELogLevel_Debug, msg, funcName);
     write(log);
 }
 
-void Prolog::error(const std::string& msg)
-{
-    const auto log = makeMsg(enums::ELogLevel::ELogLevel_Error, msg);
-    write(log);
-}
-
-void Prolog::error(const std::string& funcName, const std::string& msg)
+void Prolog::error(const std::string& funcName, const std::string& msg) const
 {
     const auto log = makeMsg(enums::ELogLevel::ELogLevel_Error, msg, funcName);
     write(log);
 }
 
-void Prolog::info(const std::string& msg)
-{
-    const auto log = makeMsg(enums::ELogLevel::ELogLevel_Info, msg);
-    write(log);
-}
-
-void Prolog::info(const std::string& funcName, const std::string& msg)
+void Prolog::info(const std::string& funcName, const std::string& msg) const
 {
     const auto log = makeMsg(enums::ELogLevel::ELogLevel_Info, msg, funcName);
     write(log);
 }
 
-void Prolog::warning(const std::string& msg)
-{
-    const auto log = makeMsg(enums::ELogLevel::ELogLevel_Warning, msg);
-    write(log);
-}
-
-void Prolog::warning(const std::string& funcName, const std::string& msg)
+void Prolog::warning(const std::string& funcName, const std::string& msg) const
 {
     const auto log = makeMsg(enums::ELogLevel::ELogLevel_Warning, msg, funcName);
     write(log);
 }
 
-const std::string Prolog::getCurrentTime()
+const std::string Prolog::getCurrentTime() const
 {
     auto timepoint = std::chrono::system_clock::now();
     auto coarse = std::chrono::system_clock::to_time_t(timepoint);
@@ -98,7 +75,7 @@ const std::string Prolog::getCurrentTime()
     return buffer;
 }
 
-std::string Prolog::makeMsg(enums::ELogLevel level, const std::string& msg, const std::string funcName)
+std::string Prolog::makeMsg(enums::ELogLevel level, const std::string& msg, const std::string funcName) const
 {
     std::string log = "";
     log = log + logLevelToString(level);
@@ -122,7 +99,7 @@ std::string Prolog::makeMsg(enums::ELogLevel level, const std::string& msg, cons
     return log;
 }
 
-void Prolog::write(const std::string& msg)
+void Prolog::write(const std::string& msg) const
 {
     std::cout << msg << std::endl;
 }
