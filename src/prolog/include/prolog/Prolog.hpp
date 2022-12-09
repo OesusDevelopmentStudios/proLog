@@ -19,8 +19,7 @@ public:
     Prolog(Prolog& prolog);
     ~Prolog();
 
-    //template <class T>
-    void debug(const std::string& msg/*, T* ... args*/) const { debug("", msg); }
+    void debug(const std::string& msg) const { debug("", msg); }
     void error(const std::string& msg) const { error("", msg); }
     void info(const std::string& msg) const { info("", msg); }
     void warning(const std::string& msg) const { warning("", msg); }

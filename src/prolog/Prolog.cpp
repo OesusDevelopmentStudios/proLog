@@ -64,13 +64,13 @@ void Prolog::warning(const std::string& funcName, const std::string& msg) const
 
 const std::string Prolog::getCurrentTime() const
 {
-    auto timepoint = std::chrono::system_clock::now();
+    auto timepoint = std::chrono::high_resolution_clock::now();
     auto coarse = std::chrono::system_clock::to_time_t(timepoint);
-    auto fine = std::chrono::time_point_cast<std::chrono::milliseconds>(timepoint);
+    auto fine = std::chrono::time_point_cast<std::chrono::microseconds>(timepoint);
 
-    char buffer[sizeof("9999-12-31 ZONE 23:59:59.999")];
+    char buffer[sizeof("9999-12-31 ZONE 23:59:59.9999999")];
     std::snprintf(buffer + std::strftime(buffer, sizeof(buffer) - 3, "%Y-%m-%d %Z %H:%M:%S:", std::localtime(&coarse)),
-        4, "%03lu", fine.time_since_epoch().count() % 1000);
+        7, "%06lu", fine.time_since_epoch().count() % 1000000);
 
     return buffer;
 }
