@@ -2,6 +2,8 @@ add_compile_options(-Werror=switch)
 
 project(prolog)
 
+add_subdirectory(log_object)
+
 set(SOURCES
     Prolog.cpp
 )
@@ -12,5 +14,10 @@ target_include_directories(${PROJECT_NAME}
     PUBLIC
         include
     PRIVATE
-        enums
+        private
+)
+
+target_link_libraries(${PROJECT_NAME}
+    PRIVATE
+        prolog-log_object
 )
