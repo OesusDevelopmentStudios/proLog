@@ -5,6 +5,7 @@
 #include <thread>
 
 #include "enums/ELogLevel.hpp"
+#include "log_object/Log.hpp"
 
 namespace prolog
 {

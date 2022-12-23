@@ -5,6 +5,7 @@ project(prolog)
 add_subdirectory(log_object)
 
 set(SOURCES
+    Configurator.cpp
     Prolog.cpp
 )
 
