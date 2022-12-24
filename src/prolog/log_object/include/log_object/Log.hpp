@@ -2,7 +2,7 @@
 
 #include <string>
 
-namespace prolog::log_object
+namespace prolog
 {
 
 namespace enums
@@ -10,12 +10,15 @@ namespace enums
 enum class ELogLevel;
 }  // namespace enums
 
+namespace log_object
+{
+
 class Log
 {
 public:
-    Log() = delete;
+    //Log() = delete;
     Log(enums::ELogLevel level, std::string date, std::string func, std::string msg, std::string name,
-        std::string threadId, std::string time);
+        std::string threadId, std::string time, std::string zone);
 
     std::string toString();
 
@@ -25,8 +28,10 @@ private:
     std::string func_;
     std::string msg_;
     std::string name_;
-    std::string threadId_:
+    std::string threadId_;
     std::string time_;
+    std::string zone_;
 };
 
-}  // namespace prolog::log_object
+}  // namespace log_object
+}  // namespace prolog

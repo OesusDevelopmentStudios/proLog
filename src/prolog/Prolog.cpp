@@ -10,30 +10,8 @@
 namespace prolog
 {
 
-namespace
-{
-
-const std::string logLevelToString(enums::ELogLevel level)
-{
-    switch (level)
-    {
-        case enums::ELogLevel::ELogLevel_Debug:
-            return "[DEBUG]";
-        case enums::ELogLevel::ELogLevel_Info:
-            return "[INFO]";
-        case enums::ELogLevel::ELogLevel_Warning:
-            return "[WARNING]";
-        case enums::ELogLevel::ELogLevel_Error:
-            return "[ERROR]";
-    }
-
-    return "";
-}
-
-}  // namespace
-
 Prolog::Prolog(const std::string& name)
-    : loggerName("[" + name + "]")
+    : loggerName_("[" + name + "]")
 {}
 
 Prolog::~Prolog()
@@ -76,10 +54,15 @@ const std::string Prolog::getCurrentTime() const
     return buffer;
 }
 
-std::string Prolog::makeMsg(enums::ELogLevel level, const std::string& msg, const std::string funcName) const
+log_object::Log Prolog::makeMsg(enums::ELogLevel level, const std::string& msg, const std::string funcName) const
 {
-    std::string log = "";
-    log = log + logLevelToString(level);
+    std::stringstream thread;
+    thread << std::this_thread::get_id();
+    auto threadId  = "<" + thread.str() + ">";
+
+    return log_object::Log(level, "", "", funcName, msg, loggerName_, threadId, "");
+    /*std::string log = "";
+    log = log + enums::logLevelToString(level);
     log = log + " " + getCurrentTime();
 
     std::stringstream threadId;
@@ -97,12 +80,12 @@ std::string Prolog::makeMsg(enums::ELogLevel level, const std::string& msg, cons
 
     log = log + msg;
 
-    return log;
+    return log;*/
 }
 
-void Prolog::write(const std::string& msg) const
+void Prolog::write(log_object::Log msg) const
 {
-    std::cout << msg << std::endl;
+    std::cout << msg.toString() << std::endl;
 }
 
 }  // namespace prolog
