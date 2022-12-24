@@ -12,11 +12,16 @@ namespace enums
 enum class ELogLevel;
 }  // namespace enums
 
+namespace log_object
+{
+class Log;
+}  // namespace log_object
+
 class Prolog
 {
 public:
-    Prolog(const std::string& name);
-    Prolog(Prolog& prolog);
+    explicit Prolog(const std::string& name);
+    explicit Prolog(Prolog& prolog);
     ~Prolog();
 
     void debug(const std::string& msg) const { debug("", msg); }
@@ -31,11 +36,10 @@ public:
 
 private:
     const std::string getCurrentTime() const;
-    std::string makeMsg(enums::ELogLevel level, const std::string& msg, const std::string funcName="") const;
-    void write(const std::string& msg) const;
+    log_object::Log makeMsg(enums::ELogLevel level, const std::string& msg, const std::string funcName="") const;
+    void write(log_object::Log msg) const;
 
-
-    const std::string loggerName;
+    const std::string loggerName_;
 };
 
 }  // namespace prolog

@@ -1,7 +1,7 @@
-project(prolog-log_object)
+project(prolog-enums)
 
 set(SOURCES
-    Log.cpp
+    EnumToString.cpp
 )
 
 add_library(${PROJECT_NAME})
@@ -9,9 +9,4 @@ target_sources(${PROJECT_NAME} PRIVATE ${SOURCES})
 target_include_directories(${PROJECT_NAME}
     PUBLIC
         include
-)
-
-target_link_libraries(${PROJECT_NAME}
-    PRIVATE
-        prolog-enums
 )
