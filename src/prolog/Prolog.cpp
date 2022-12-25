@@ -4,6 +4,7 @@
 #include <sstream>
 #include <thread>
 
+#include "config/Config.hpp"
 #include "enums/ELogLevel.hpp"
 #include "log/Log.hpp"
 
@@ -51,7 +52,7 @@ const std::vector<std::string> Prolog::getCurrentTime() const
     char zone [sizeof("ZONE")];
     char time [sizeof("23:59:59.9999999")];
 
-    std::strftime(std::data(date), std::size(date), "%Y-%m-%d", std::localtime(&coarse));
+    std::strftime(std::data(date), std::size(date), config::DATE_FORMAT.c_str(), std::localtime(&coarse));
     std::strftime(std::data(zone), std::size(zone), "%Z", std::localtime(&coarse));
     std::snprintf(time + std::strftime(time, sizeof(time) - 3, "%H:%M:%S:", std::localtime(&coarse)),
         7, "%06lu", fine.time_since_epoch().count() % 1000000);

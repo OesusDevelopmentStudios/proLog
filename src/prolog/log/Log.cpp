@@ -3,7 +3,7 @@
 #include <regex>
 #include <iostream>
 
-#include "config/config.hpp"
+#include "config/Config.hpp"
 #include "enums/ELogLevel.hpp"
 
 namespace prolog::log
