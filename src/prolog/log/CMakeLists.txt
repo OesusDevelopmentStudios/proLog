@@ -1,4 +1,4 @@
-project(prolog-log_object)
+project(prolog-log)
 
 set(SOURCES
     Log.cpp
@@ -13,5 +13,6 @@ target_include_directories(${PROJECT_NAME}
 
 target_link_libraries(${PROJECT_NAME}
     PRIVATE
+        prolog-config
         prolog-enums
 )

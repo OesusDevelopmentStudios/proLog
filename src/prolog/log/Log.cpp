@@ -1,12 +1,12 @@
-#include "log_object/Log.hpp"
+#include "log/Log.hpp"
 
 #include <regex>
+#include <iostream>
 
+#include "config/config.hpp"
 #include "enums/ELogLevel.hpp"
 
-std::string DUMMY_MSG = "%L %D %T %Z %ID %N::%F %M";
-
-namespace prolog::log_object
+namespace prolog::log
 {
 
 Log::Log(enums::ELogLevel level, std::string date, std::string func, std::string msg, std::string name,
@@ -23,11 +23,17 @@ Log::Log(enums::ELogLevel level, std::string date, std::string func, std::string
 
 std::string Log::toString()
 {
-    auto log = DUMMY_MSG;
+    auto log = config::LOG_FORMAT;
+    log = std::regex_replace(log, std::regex("\\%D"), date_);
+    log = std::regex_replace(log, std::regex("\\%F"), func_);
+    log = std::regex_replace(log, std::regex("\\%ID"), threadId_);
     log = std::regex_replace(log, std::regex("\\%L"), enums::logLevelToString(level_));
     log = std::regex_replace(log, std::regex("\\%M"), msg_);
+    log = std::regex_replace(log, std::regex("\\%N"), name_);
+    log = std::regex_replace(log, std::regex("\\%T"), time_);
+    log = std::regex_replace(log, std::regex("\\%Z"), zone_);
 
     return log;
 }
 
-}  // namespace prolog::log_object
+}  // namespace prolog::log

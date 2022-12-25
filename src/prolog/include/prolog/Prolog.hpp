@@ -3,6 +3,7 @@
 #include <cstdarg>
 #include <iostream>
 #include <string>
+#include <vector>
 
 namespace prolog
 {
@@ -12,10 +13,10 @@ namespace enums
 enum class ELogLevel;
 }  // namespace enums
 
-namespace log_object
+namespace log
 {
 class Log;
-}  // namespace log_object
+}  // namespace log
 
 class Prolog
 {
@@ -35,9 +36,9 @@ public:
     void warning(const std::string& functionName, const std::string& name) const;
 
 private:
-    const std::string getCurrentTime() const;
-    log_object::Log makeMsg(enums::ELogLevel level, const std::string& msg, const std::string funcName="") const;
-    void write(log_object::Log msg) const;
+    const std::vector<std::string> getCurrentTime() const;
+    log::Log makeMsg(enums::ELogLevel level, const std::string& msg, const std::string funcName="") const;
+    void write(log::Log msg) const;
 
     const std::string loggerName_;
 };

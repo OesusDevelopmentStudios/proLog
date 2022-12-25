@@ -10,7 +10,7 @@ namespace enums
 enum class ELogLevel;
 }  // namespace enums
 
-namespace log_object
+namespace log
 {
 
 class Log
@@ -33,5 +33,5 @@ private:
     std::string zone_;
 };
 
-}  // namespace log_object
+}  // namespace log
 }  // namespace prolog

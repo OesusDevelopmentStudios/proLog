@@ -4,7 +4,7 @@ project(prolog)
 
 add_subdirectory(config)
 add_subdirectory(enums)
-add_subdirectory(log_object)
+add_subdirectory(log)
 
 set(SOURCES
     Configurator.cpp
@@ -22,5 +22,5 @@ target_link_libraries(${PROJECT_NAME}
     PRIVATE
         prolog-config
         prolog-enums
-        prolog-log_object
+        prolog-log
 )
