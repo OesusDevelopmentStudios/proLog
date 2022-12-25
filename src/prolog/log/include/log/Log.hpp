@@ -17,20 +17,20 @@ class Log
 {
 public:
     //Log() = delete;
-    Log(enums::ELogLevel level, std::string date, std::string func, std::string msg, std::string name,
-        std::string threadId, std::string time, std::string zone);
+    Log(const enums::ELogLevel& level, const std::string& date, const std::string& func, const std::string& msg,
+        const std::string& name, const std::string& threadId, const std::string& time, const std::string& zone);
 
-    std::string toString();
+    const std::string toString() const;
 
 private:
-    enums::ELogLevel level_;
-    std::string date_; 
-    std::string func_;
-    std::string msg_;
-    std::string name_;
-    std::string threadId_;
-    std::string time_;
-    std::string zone_;
+    const enums::ELogLevel level_;
+    const std::string date_; 
+    const std::string func_;
+    const std::string msg_;
+    const std::string name_;
+    const std::string threadId_;
+    const std::string time_;
+    const std::string zone_;
 };
 
 }  // namespace log

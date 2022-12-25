@@ -9,8 +9,8 @@
 namespace prolog::log
 {
 
-Log::Log(enums::ELogLevel level, std::string date, std::string func, std::string msg, std::string name,
-        std::string threadId, std::string time, std::string zone)
+Log::Log(const enums::ELogLevel& level, const std::string& date, const std::string& func, const std::string& msg,
+    const std::string& name, const std::string& threadId, const std::string& time, const std::string& zone)
     : level_(level)
     , date_(date)
     , func_(func)
@@ -21,7 +21,7 @@ Log::Log(enums::ELogLevel level, std::string date, std::string func, std::string
     , zone_(zone)
 {}
 
-std::string Log::toString()
+const std::string Log::toString() const
 {
     auto log = config::LOG_FORMAT;
     log = std::regex_replace(log, std::regex("\\%D"), date_);
