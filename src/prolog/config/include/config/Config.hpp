@@ -4,6 +4,6 @@
 
 namespace prolog::config
 {
-    static std::string LOG_FORMAT {"%L %D %T %Z %ID [%N]::[%F] %M"};
-    static std::string DATE_FORMAT {"%Y-%m-%d"};
+    extern std::string LOG_FORMAT;
+    extern std::string DATE_FORMAT;
 }  // namespace prolog::config

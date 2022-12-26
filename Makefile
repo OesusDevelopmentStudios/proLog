@@ -1,5 +1,5 @@
 compile:
-	cmake -B build -S .
+	cmake -j -B build -S .
 	$(MAKE) -C build
 
 run:

@@ -48,7 +48,7 @@ const std::vector<std::string> Prolog::getCurrentTime() const
     auto coarse = std::chrono::system_clock::to_time_t(timepoint);
     auto fine = std::chrono::time_point_cast<std::chrono::microseconds>(timepoint);
 
-    char date [sizeof("9999-12-31")];
+    char date [sizeof(config::DATE_FORMAT)];
     char zone [sizeof("ZONE")];
     char time [sizeof("23:59:59.9999999")];
 

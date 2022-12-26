@@ -1,5 +1,6 @@
 #include "testable/Testable.hpp"
 
+#include "prolog/Configurator.hpp"
 #include "prolog/Prolog.hpp"
 
 namespace prolog::testable
@@ -18,8 +19,11 @@ Testable::~Testable()
 
 void Testable::start_test()
 {
+    Configurator config;
+
     info_logger();
     debug_logger();
+    // config.setDateFormat("%d:%m %Y r.");
     error_logger();
     warning_logger();
 }
