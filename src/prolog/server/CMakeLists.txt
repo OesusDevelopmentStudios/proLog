@@ -1,15 +1,7 @@
-add_compile_options(-Werror=switch)
-
-project(prolog)
-
-add_subdirectory(config)
-add_subdirectory(enums)
-add_subdirectory(log)
-add_subdirectory(server)
+project(prolog-server)
 
 set(SOURCES
-    Configurator.cpp
-    Prolog.cpp
+    Server.cpp
 )
 
 add_library(${PROJECT_NAME})
@@ -22,7 +14,5 @@ target_include_directories(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME}
     PRIVATE
         prolog-config
-        prolog-enums
         prolog-log
-        prolog-server
 )

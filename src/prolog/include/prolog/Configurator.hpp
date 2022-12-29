@@ -10,8 +10,10 @@ class Configurator
 public:
     Configurator();
 
-    void setLogFormat(std::string format);
-    void setDateFormat(std::string format);
+    void setDateFormat(const std::string& format);
+    void setLogFormat(const std::string& format);
+    void setLogsPerFile(const uint16_t& limit);
+    void setUseThreads(const bool& useThreads);
 };
 
 }  // namespace prolog
