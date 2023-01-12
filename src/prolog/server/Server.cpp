@@ -10,11 +10,27 @@ Server::Server()
 {}
 
 Server::~Server()
-{}
+{
+    stop();
+}
 
 void Server::start()
 {
-    // TBA
+    enabled_ = true;
+    run();
+}
+
+void Server::run()
+{
+    while (enabled_)
+    {
+
+    }
+}
+
+void Server::stop()
+{
+    enabled_ = false;
 }
 
 }  // namesapce prolog::server

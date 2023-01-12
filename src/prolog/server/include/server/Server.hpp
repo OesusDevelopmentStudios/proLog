@@ -21,10 +21,14 @@ public:
     ~Server();
 
     void start();
+    void stop();
     
     void operator=(const Server& server) = delete;
 
 private:
+    void run();
+
+    bool enabled_;
     std::vector<log::Log> storedLogs_;
 };
 

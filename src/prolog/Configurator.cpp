@@ -1,8 +1,10 @@
 #include "prolog/Configurator.hpp"
 
 #include <iostream>
+#include <memory>
 
 #include "config/Config.hpp"
+#include "server/fwd.hpp"
 
 namespace prolog
 {
@@ -12,8 +14,35 @@ uint16_t config::LOGS_PER_FILE {10000};
 std::string config::LOG_FORMAT {"%L %D %T %Z %ID [%N](%F): %M"};
 std::string config::DATE_FORMAT {"%Y-%m-%d"};
 
+bool server::isInitilized {false};
+server::Server server::logServer {Server()};
+
 Configurator::Configurator()
 {}
+
+Configurator::~Configurator()
+{
+    if (config::USE_THREADS)
+    {
+        server::logServer.stop();
+
+        if (serverThread_.joinable())
+        {
+            serverThread_.join();
+        }
+    }
+}
+
+void Configurator::initilize()
+{
+    if (config::USE_THREADS)
+    {
+        serverThread_ = std::thread(&server::Server::start, &server::logServer);
+        serverThread_.detach();
+    }
+
+    server::isInitilized = true;
+}
 
 void Configurator::setDateFormat(const std::string& format)
 {

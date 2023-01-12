@@ -1,5 +1,8 @@
 add_compile_options(-Werror=switch)
 
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
+
 project(prolog)
 
 add_subdirectory(config)
@@ -25,4 +28,5 @@ target_link_libraries(${PROJECT_NAME}
         prolog-enums
         prolog-log
         prolog-server
+        Threads::Threads
 )

@@ -7,6 +7,7 @@
 #include "config/Config.hpp"
 #include "enums/ELogLevel.hpp"
 #include "log/Log.hpp"
+#include "server/fwd.hpp"
 
 namespace prolog
 {
