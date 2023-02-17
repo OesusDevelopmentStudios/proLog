@@ -1,7 +1,6 @@
 #pragma once
 
 #include <cstdarg>
-#include <iostream>
 #include <string>
 #include <vector>
 
@@ -38,7 +37,6 @@ public:
 private:
     const std::vector<std::string> getCurrentTime() const;
     log::Log makeMsg(enums::ELogLevel level, const std::string& msg, const std::string funcName="") const;
-    void write(log::Log msg) const;
 
     const std::string loggerName_;
 };

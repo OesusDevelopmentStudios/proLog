@@ -20,6 +20,7 @@ public:
     Server(Server& server) = delete;
     ~Server();
 
+    void addLog(log::Log log);
     void start();
     void stop();
     
@@ -27,6 +28,7 @@ public:
 
 private:
     void run();
+    void write(const log::Log& msg);
 
     bool enabled_;
     std::vector<log::Log> storedLogs_;

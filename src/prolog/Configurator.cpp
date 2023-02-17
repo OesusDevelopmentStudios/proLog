@@ -10,6 +10,7 @@ namespace prolog
 {
 
 bool config::USE_THREADS {true};
+bool config::VERBOSE {true};
 uint16_t config::LOGS_PER_FILE {10000};
 std::string config::LOG_FORMAT {"%L %D %T %Z %ID [%N](%F): %M"};
 std::string config::DATE_FORMAT {"%Y-%m-%d"};
