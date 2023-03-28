@@ -12,6 +12,7 @@ Prolog logger("Testable");
 }  // namespace
 
 Testable::Testable()
+    : config_(std::make_unique<Configurator>())
 {}
 
 Testable::~Testable()
@@ -19,13 +20,23 @@ Testable::~Testable()
 
 void Testable::start_test()
 {
-    Configurator config;
+    std::chrono::milliseconds dura(1000);
+    std::this_thread::sleep_for(dura);
 
+    config_->initilize();
+
+    std::this_thread::sleep_for(dura);
     info_logger();
+    std::this_thread::sleep_for(dura);
     debug_logger();
-    // config.setDateFormat("%d:%m %Y r.");
+    std::this_thread::sleep_for(dura);
+
+    config_->setDateFormat("%d:%m %Yr.");
+
     error_logger();
+    std::this_thread::sleep_for(dura);
     warning_logger();
+    std::this_thread::sleep_for(dura);
 }
 
 void Testable::info_logger()

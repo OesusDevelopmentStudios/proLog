@@ -1,5 +1,6 @@
 #pragma once
 
+#include <mutex>
 #include <vector>
 
 namespace prolog
@@ -27,10 +28,12 @@ public:
     void operator=(const Server& server) = delete;
 
 private:
+    void processLogs();
     void run();
     void write(const log::Log& msg);
 
     bool enabled_;
+    std::mutex storedLogsMutex_;
     std::vector<log::Log> storedLogs_;
 };
 

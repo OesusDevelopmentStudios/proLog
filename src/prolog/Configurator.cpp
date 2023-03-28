@@ -6,6 +6,9 @@
 #include "config/Config.hpp"
 #include "server/fwd.hpp"
 
+#include "log/Log.hpp"
+#include "enums/ELogLevel.hpp"
+
 namespace prolog
 {
 
@@ -15,8 +18,8 @@ uint16_t config::LOGS_PER_FILE {10000};
 std::string config::LOG_FORMAT {"%L %D %T %Z %ID [%N](%F): %M"};
 std::string config::DATE_FORMAT {"%Y-%m-%d"};
 
-bool server::isInitilized {false};
-server::Server server::logServer {Server()};
+bool server::isInitilized { false };
+server::Server server::logServer { Server() };
 
 Configurator::Configurator()
 {}
