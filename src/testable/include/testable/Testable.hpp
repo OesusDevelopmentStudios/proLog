@@ -1,6 +1,13 @@
 #pragma once
 
-namespace prolog::testable
+#include <memory>
+
+namespace prolog
+{
+
+class Configurator;
+
+namespace testable
 {
 
 class Testable
@@ -16,6 +23,9 @@ private:
     void debug_logger();
     void error_logger();
     void warning_logger();
+
+    std::unique_ptr<Configurator> config_;
 };
 
-}  // namespace prolog::testable
+}  // namespace testable
+}  // namespace prolog

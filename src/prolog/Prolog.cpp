@@ -7,6 +7,7 @@
 #include "config/Config.hpp"
 #include "enums/ELogLevel.hpp"
 #include "log/Log.hpp"
+#include "server/fwd.hpp"
 
 namespace prolog
 {
@@ -21,25 +22,25 @@ Prolog::~Prolog()
 void Prolog::debug(const std::string& funcName, const std::string& msg) const
 {
     const auto log = makeMsg(enums::ELogLevel::ELogLevel_Debug, msg, funcName);
-    write(log);
+    server::logServer.addLog(log);
 }
 
 void Prolog::error(const std::string& funcName, const std::string& msg) const
 {
     const auto log = makeMsg(enums::ELogLevel::ELogLevel_Error, msg, funcName);
-    write(log);
+    server::logServer.addLog(log);
 }
 
 void Prolog::info(const std::string& funcName, const std::string& msg) const
 {
     const auto log = makeMsg(enums::ELogLevel::ELogLevel_Info, msg, funcName);
-    write(log);
+    server::logServer.addLog(log);
 }
 
 void Prolog::warning(const std::string& funcName, const std::string& msg) const
 {
     const auto log = makeMsg(enums::ELogLevel::ELogLevel_Warning, msg, funcName);
-    write(log);
+    server::logServer.addLog(log);
 }
 
 const std::vector<std::string> Prolog::getCurrentTime() const
@@ -68,11 +69,6 @@ log::Log Prolog::makeMsg(enums::ELogLevel level, const std::string& msg, const s
     auto threadId  = "<" + thread.str() + ">";
 
     return log::Log(level, time[0], funcName, msg, loggerName_, threadId, time[2], time[1]);
-}
-
-void Prolog::write(log::Log msg) const
-{
-    std::cout << msg.toString() << std::endl;
 }
 
 }  // namespace prolog
