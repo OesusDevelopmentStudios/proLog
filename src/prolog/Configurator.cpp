@@ -65,8 +65,7 @@ void Configurator::setLogsPerFile(const uint16_t& limit)
 
 void Configurator::setUseThreads(const bool& useThreads)
 {
-    config::USE_THREADS = useThreads;   
+    config::USE_THREADS = useThreads;
 }
 
 } // namespace prolog
-
